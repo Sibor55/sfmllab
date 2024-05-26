@@ -20,10 +20,10 @@ FetchContent_Declare(SFML
 # Загружаем и делаем доступным контент SFML
 FetchContent_MakeAvailable(SFML)
 
-# Создаем исполняемый файл из исходного файла src/main.cpp(при необходимости добавить или изменить на нужный Вам)
+# Создаем исполняемый файл из исходного файла src/main.cpp (При необходимости добавить или изменить на нужный Вам)
 add_executable(main src/main.cpp)
 
-# Линкуем SFML-графику к нашему исполняемому файлу
+# Линкуем SFML-графику к нашему исполняемому файлу (При необходимости также можно добавить или изменить, больше на https://www.sfml-dev.org/documentation/2.6.1/topics.php)
 target_link_libraries(main PRIVATE sfml-graphics)
 
 # Устанавливаем стандарт C++ 17 для компиляции
