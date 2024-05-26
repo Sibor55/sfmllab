@@ -1,22 +1,40 @@
-# LibraryLab
-## Требования
+## Как использовать
 
-- **GCC 13.1.0 MinGW (SEH) - 64-bit**
-- **CMAKE**
+1. Установите Git и CMake. Используйте менеджер пакетов вашей системы, если он доступен.
+1. Клонируйте новый репозиторий GitHub и откройте его в текстовом редакторе по вашему выбору.
+1. Откройте [CMakeLists.txt](CMakeLists.txt). Переименуйте проект и исполняемый файл в любое имя.
+1. Если вы хотите добавить или удалить какие-либо файлы .cpp, измените исходные файлы, перечисленные в вызове [`add_executable`](CMakeLists.txt#L10) в CMakeLists.txt, чтобы они соответствовали исходным файлам, которые требуются вашему проекту. Если вы планируете сохранить файл main.cpp по умолчанию, никаких изменений не требуется.
+1. Если вы используете Linux, установите зависимости SFML с помощью системного менеджера пакетов. В Ubuntu и других дистрибутивах на основе Debian вы можете использовать следующие команды:
+    ```
+    обновление sudo apt
+    sudo apt установить \
+        libxrandr-dev \
+        libxcursor-dev \
+        libudev-dev \
+        libfreetype-dev \
+        libopenal-dev \
+        libflac-dev \
+        libvorbis-dev \
+        libgl1-mesa-dev \
+        libegl1-mesa-dev
+    ```
+1. Настройте и создайте свой проект. Большинство популярных IDE поддерживают проекты CMake без особых усилий с вашей стороны.
+    - [VS Code](https://code.visualstudio.com) через [расширение CMake](https://code.visualstudio.com/docs/cpp/cmake-linux)
+    - [Visual Studio](https://docs.microsoft.com/en-us/cpp/build/cmake-projects-in-visual-studio?view=msvc-170)
+    - [CLion](https://www.jetbrains.com/clion/features/cmake-support.html)
+    - [Qt Creator](https://doc.qt.io/qtcreator/creator-project-cmake.html)
 
-## Настройка
-### 1. Установите MinGW-w64 c GCC и CMAKE
+    Использовать CMake из командной строки также просто.
 
-Если вы еще этого не сделали, скачайте и установите MinGW-w64, который включает GCC. А также CMAKE.
-### 2. Добавьте каталог bin SFML в PATH
+    Для генератора с одной конфигурацией (обычно в Linux и macOS):
+    ```
+    cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+    cmake --build build
+    ```
 
-Перед сборкой проекта необходимо добавить каталог `SFML-2.6.1\bin`  в переменную среды PATH. Это гарантирует, что исполняемый файл сможет найти DLL-файлы SFML при запуске.
-
-#### Windows 10/11
-
-1. Нажмите `Win + R`, введите `sysdm.cpl` и нажмите `Enter`.
-2. Перейдите на вкладку `Дополнительно` и нажмите кнопку `Переменные среды`.
-3. В разделе `Системные переменные` найдите переменную `Path`, выберите ее и нажмите `Изменить`.
-4. Нажмите `Создать` и добавьте путь к каталогу `bin` SFML (например, `C:\path\to\repo\SFML-2.6.1\bin`).
-5. Нажмите `OK`, чтобы закрыть все окна.
-
+    Для генератора с несколькими конфигурациями (обычно в Windows):
+    ```
+    cmake -S . -B build
+    cmake --build build --config Release
+    ```
+1. Наслаждайтесь!
